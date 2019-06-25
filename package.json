@@ -40,6 +40,6 @@
     "webpack-plugin": "^1.0.5"
   },
   "dependencies": {
-    "babel-core": "^6.26.3"
+    "node.normalize.scss": "^3.0.3"
   }
 }

@@ -1,10 +1,5 @@
-h1{
-  color: red;
-}
-
-div{
-  width:30px;
-  height:30px;
-  background:red;
-  display: flex;
-}
+@import  'scss/partials/base/normalize.scss',
+         'scss/partials/base/reset.scss',
+         'scss/partials/utilities/variables.scss',
+         'scss/partials/base/typography.scss',
+         'scss/partials/layouts/header.scss';

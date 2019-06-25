@@ -1,4 +1,4 @@
-import './index.scss'
+import './index.scss';
 import webpackimg from './img/webpack-img.jpg'
 
 const img = document.createElement("img")
