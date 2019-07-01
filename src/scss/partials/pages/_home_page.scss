@@ -61,12 +61,37 @@
   height: 8.5rem;
 }
 
+.featured-list-container{
+  margin-top: 3rem;
+  @media screen and (min-width: $md_breakpoint) {
+    grid-column: 1 / span 2;
+  }
+}
+
 .featured-list {
   display: flex;
   flex-wrap: wrap;
-  // grid-column: 1 / span 2;
-  // @media screen and (min-width: $md_breakpoint) {
-  //   width: $media-container-max;
-  // }
   justify-content: space-between;
+
+  li{
+    display:flex;
+    max-width: 23rem;
+    max-height: 16rem;
+
+    div{
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    p{
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.featured-img{
+  max-width: 9rem;
+  max-height:13rem;
+  margin-right:1rem;
 }
