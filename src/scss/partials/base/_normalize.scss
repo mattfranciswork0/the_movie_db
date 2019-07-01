@@ -27,6 +27,12 @@ html {
   @if $legacy_browser_support {
     *font-size: 100%; /* 3 */
   }
+  box-sizing: border-box;
+}
+
+
+*, *:before, *:after {
+box-sizing: inherit;
 }
 
 /**

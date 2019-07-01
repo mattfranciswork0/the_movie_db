@@ -11,9 +11,9 @@ header {
     flex-direction: row;
     padding: 2rem;
   }
-  flex-wrap: wrap;
   background-color: $navy;
   padding: 1rem;
+  z-index: 1;
 }
 
 .main-header-wrap {
@@ -27,7 +27,6 @@ header {
 .primary {
   display: flex;
   text-transform: uppercase;
-  list-style-type: none;
   line-height: 1.4rem;
 
   li {
@@ -35,7 +34,6 @@ header {
     font-size: 1.3rem;
     font-weight: bold;
     // font: 2rem bold;
-    color: white;
     @media screen and (min-width: $md_breakpoint) {
       font-size: 1.5rem;
     }
