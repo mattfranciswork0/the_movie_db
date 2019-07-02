@@ -1,6 +1,6 @@
 .media {
   max-width: 100rem; //need max-width when in large screen so both columns have no extra space and are squeezed in
-  margin: auto;
+  margin: 20rem auto;
   display: grid;
   border: 1px solid red;
   padding: 1rem;
@@ -8,8 +8,6 @@
   //fr will expand on the free space
   //Note to future me:, know difference between auto-fill and auto-fit; auto-fill will keep track of 'empty' grid tracks; while auto fit will collapse the empty grid tracks;
   //it dosen't matter in this case because there is no empty grid tracks
-  margin-top: 20rem;
-
   img {
     width: 100%;
     height: 100%;
@@ -21,7 +19,7 @@
   flex-wrap: wrap;
   justify-content: center; //centers inside column
 
-  h2 {
+  & > h2 {
     width: 100%;
     text-align: center;
     @media screen and (min-width: $lg_breakpoint) {
@@ -36,32 +34,51 @@
 }
 
 .big-pic {
+  position: relative;
   max-width: 50rem;
   max-height: 28rem;
 }
 
 .small-pic {
-  // display: inline-block;
-  // margin-right: -.3rem;
+  position: relative;
   width: 50%; //without this, it will grow until 25 rem in smaller screens; wouldn't fit container
   max-width: 25rem;
   max-height: 14rem;
 }
 
-.details {
+.detail-container {
   display: flex;
-  position: relative;
-  top: 15rem;
-  border: solid 1px red;
-  margin-top: auto;
+  position: absolute;
+  align-items: flex-end;
+  width: 100%; //flex dosen't recognize this as a flex child becasue of posi
+  bottom: 0;
+  padding: 1rem;
 }
 
 .detail-pic {
-  width: 6rem;
-  height: 8.5rem;
+  //max width/height is needed despite the image not being large because of .media img{width:100%; height:100%} overridiing it
+  max-width: 6rem;
+  max-height: 8.5rem;
+  margin-right: 1rem;
 }
 
-.featured-list-container{
+.detail-text {
+  display: flex;
+  flex-direction: column;
+  //align-items: flex-end;
+  overflow: hidden;
+  white-space: nowrap;
+  text-shadow: rgb(0, 0, 0) 1px 1px 0;
+
+  h2,
+  h4 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+  }
+}
+
+.featured-list-container {
   margin-top: 3rem;
   @media screen and (min-width: $md_breakpoint) {
     grid-column: 1 / span 2;
@@ -73,25 +90,25 @@
   flex-wrap: wrap;
   justify-content: space-between;
 
-  li{
-    display:flex;
+  li {
+    display: flex;
     max-width: 23rem;
     max-height: 16rem;
 
-    div{
+    div {
       overflow: hidden;
       white-space: nowrap;
     }
 
-    p{
+    p {
       overflow: hidden;
       text-overflow: ellipsis;
     }
   }
 }
 
-.featured-img{
+.featured-img {
   max-width: 9rem;
-  max-height:13rem;
-  margin-right:1rem;
+  max-height: 13rem;
+  margin-right: 1rem;
 }
