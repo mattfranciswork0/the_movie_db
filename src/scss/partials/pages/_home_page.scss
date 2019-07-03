@@ -2,8 +2,8 @@
   max-width: 100rem; //need max-width when in large screen so both columns have no extra space and are squeezed in
   margin: 17rem auto 5rem auto;
   display: grid;
-  padding: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+  padding: 1rem 2rem; //note: padding affects grid-template-columns's minmax(..)! so if you change padding, you have to readjust the min in minmax(..)!
+  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
   //fr will expand on the free space
   //Note to future me:, know difference between auto-fill and auto-fit; auto-fill will keep track of 'empty' grid tracks; while auto fit will collapse the empty grid tracks;
   //it dosen't matter in this case because there is no empty grid tracks
