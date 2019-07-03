@@ -1,0 +1,62 @@
+footer{
+  //Note to future me:
+  //How should you know if you should use <img> or background-img? Ask yourself is this part of the content or part of the design?
+  //If it's content use <img> as <img>'s alt helps with SEO; and your able to perofrm css transitions without js
+     background-image: url('/src/img/footer-pic.jpg');
+     background-size: 100% auto;
+     padding: 3rem;
+
+     @media screen and (min-width: $md_breakpoint) {
+       height: 45rem;
+     }
+
+    nav{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      @media screen and (min-width: $md_breakpoint) {
+        justify-content: center;
+      }
+    }
+
+     h3{
+       font-weight: bold;
+       font-size: 1.8rem;
+       line-height: 1.4rem;
+       text-transform: uppercase;
+     }
+
+     div{
+       margin:0 2rem;
+
+       li {
+         font-size:1.7rem;
+         line-height: 2.5rem;
+          // white-space: nowrap;
+          // overflow: hidden;
+          // text-overflow: ellipsis;
+       }
+     }
+}
+
+.join-and-logo{
+      text-align: right;
+    p{
+      margin-top: 2rem;
+      font-weight: bold;
+      color: rgb(79, 254, 178);
+      font-weight: bold;
+      font-size:1.5rem;
+      text-transform: uppercase;
+
+      border: 2px solid #4FFBE2;
+      border-radius: 5px;
+      padding: 8px 16px;
+      transition: linear .1s;
+      @media screen and (min-width: $md_breakpoint) {
+        font-size: 2rem;
+      }
+    }
+}
