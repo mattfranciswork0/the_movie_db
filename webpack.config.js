@@ -15,7 +15,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['@babel/polyfill','./src/index.js'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist') //__dirname (reserved keyword)= current directory; create a path
@@ -30,7 +30,7 @@ module.exports = {
           use: [
             {//Loaders are executed in reverse order
               loader: 'babel-loader',
-          
+
             //preset is @babel-env in .babelrc
             //"syntax-dynamic-import" in babel.rc is required for dynamiclaly importing (used for lazy loading) (https://medium.com/walkme-engineering/when-magic-fails-a-programmer-grows-e3289ced0791)
             //core-js needed in package.json for promise pollyfill/support in IE

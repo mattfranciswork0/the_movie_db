@@ -4,5 +4,7 @@
       "modules": false
     }]
   ],
-  "plugins": ["@babel/syntax-dynamic-import"]
+  "plugins": [
+    "@babel/syntax-dynamic-import"
+   ]
 }
