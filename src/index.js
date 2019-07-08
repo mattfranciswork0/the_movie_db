@@ -54,7 +54,7 @@ async function getOnTheaters() {
 
   const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`);
   const totalDetailText = 3;
-  
+
   const title = document.querySelectorAll('.column:nth-child(2) .detail-text h2');
   let detailTextIndex = 2;
   for (let i = 0; i < totalDetailText; i += 1) {
@@ -85,3 +85,23 @@ async function getOnTheaters() {
   }
 }
 getOnTheaters();
+
+async function getTrendingMovies() {
+  try {
+    const response = await axios.get('https://api.themoviedb.org/3/trending/movie/week?api_key=267f6c03dccb4096c3b41afeb9ac7d26');
+    const trendingImage = document.getElementsByClassName('trending-img');
+    const title = document.querySelectorAll('.trending-list li h3 ');
+    const overview = document.querySelectorAll('.trending-list li p ');
+    const totalImage = 3;
+    for (let i = 0; i < totalImage; i += 1) {
+      // console.log(`https://image.tmdb.org/t/p/154/${response.data.results[i].poster_path}`)
+      trendingImage[i].src = `https://image.tmdb.org/t/p/w154/${response.data.results[i].poster_path}`;
+      title[i].innerHTML = `${response.data.results[i].original_title}`;
+      overview[i].innerHTML = `${response.data.results[i].overview}`;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+getTrendingMovies();
