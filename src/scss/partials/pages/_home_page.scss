@@ -97,14 +97,13 @@
   li {
     display: flex;
     margin: 0.5rem;
-
     @media screen and (min-width: $md_breakpoint) {
       max-width: 34rem;
     }
-
     @media screen and (min-width: $lg_breakpoint) {
       max-width: 23rem;
     }
+
     p {
       position: relative;
       font-size: 1.2rem;

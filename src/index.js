@@ -47,7 +47,7 @@ async function getOnTV() {
     detailText[i].children[1].innerHTML = `Next episode: ${nextAirDate}`;
   }
 }
-getOnTV();
+// getOnTV();
 
 async function getOnTheaters() {
   const promises = [];
@@ -84,24 +84,32 @@ async function getOnTheaters() {
     castIndex -= 1;
   }
 }
-getOnTheaters();
+// getOnTheaters();
 
 async function getTrendingMovies() {
+  const response = await axios.get('https://api.themoviedb.org/3/trending/movie/week?api_key=267f6c03dccb4096c3b41afeb9ac7d26');
+  const trendingImage = document.getElementsByClassName('trending-img');
+  const title = document.querySelectorAll('.trending-list li h3 ');
+  const overview = document.querySelectorAll('.trending-list li p ');
+  const totalImage = 3;
+  for (let i = 0; i < totalImage; i += 1) {
+    // console.log(`https://image.tmdb.org/t/p/154/${response.data.results[i].poster_path}`)
+    trendingImage[i].src = `https://image.tmdb.org/t/p/w154/${response.data.results[i].poster_path}`;
+    title[i].innerHTML = `${response.data.results[i].original_title}`;
+    overview[i].innerHTML = `${response.data.results[i].overview}`;
+  }
+}
+
+// getTrendingMovies();
+
+async function loaderStatus() {
   try {
-    const response = await axios.get('https://api.themoviedb.org/3/trending/movie/week?api_key=267f6c03dccb4096c3b41afeb9ac7d26');
-    const trendingImage = document.getElementsByClassName('trending-img');
-    const title = document.querySelectorAll('.trending-list li h3 ');
-    const overview = document.querySelectorAll('.trending-list li p ');
-    const totalImage = 3;
-    for (let i = 0; i < totalImage; i += 1) {
-      // console.log(`https://image.tmdb.org/t/p/154/${response.data.results[i].poster_path}`)
-      trendingImage[i].src = `https://image.tmdb.org/t/p/w154/${response.data.results[i].poster_path}`;
-      title[i].innerHTML = `${response.data.results[i].original_title}`;
-      overview[i].innerHTML = `${response.data.results[i].overview}`;
-    }
+    await Promise.all([getOnTV(), getOnTheaters(), getTrendingMovies()]).then(() => {
+      document.getElementsByClassName('loader')[0].style.display = 'none';
+    });
   } catch (err) {
     console.log(err);
   }
 }
 
-getTrendingMovies();
+loaderStatus();
