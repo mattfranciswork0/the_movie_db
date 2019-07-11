@@ -12,7 +12,7 @@
     height: 100%;
   }
   @media screen and (min-width: $md_breakpoint) {
-    margin-top: 12rem;
+    margin-top: 15rem;
   }
 }
 
@@ -86,7 +86,9 @@
 
 .trending-list-container {
   margin-top: 3rem;
-  grid-column: 1 / span 2;
+  @media screen and (min-width: $md_breakpoint) {
+    grid-column: 1 / span 2; //grid column in sm will not allow "In Theathers" to move to another line
+  }
 }
 
 .trending-list {
