@@ -113,3 +113,20 @@ async function loaderStatus() {
 }
 
 loaderStatus();
+
+
+function showResultsFromSearchBox() {
+  window.addEventListener('click', (e) => {
+    if (document.querySelector('.search-form > input').contains(e.target)) {
+      document.getElementsByClassName('search-dropdown')[0].style.display = 'block';
+    } else {
+      document.getElementsByClassName('search-dropdown')[0].style.display = 'none';
+    }
+  });
+
+  window.addEventListener('scroll', () => {
+    document.getElementsByClassName('search-dropdown')[0].style.display = 'none';
+  });
+}
+
+showResultsFromSearchBox();

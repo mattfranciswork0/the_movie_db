@@ -1,9 +1,9 @@
-header{
-    position: fixed;
-    background-color: $navy;
-    z-index: 1;
-    top: 0;
-    width: 100%;
+header {
+  position: fixed;
+  background-color: $navy;
+  z-index: 1;
+  top: 0;
+  width: 100%;
 }
 
 .header-content {
@@ -11,13 +11,12 @@ header{
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 1.3rem 0;;
+  padding: 1.3rem 0;
   @media screen and (min-width: $md_breakpoint) {
     justify-content: flex-start;
     flex-direction: row;
     padding: 2rem;
   }
-
   @media screen and (min-width: $lg_breakpoint) {
     padding: 2rem 13rem;
   }
@@ -53,40 +52,67 @@ header{
   }
 }
 
-.search-bar{
+.search-bar {
   background-color: $light-black;
   border: 1px solid transparent;
-  border-bottom-color: rgb(58, 58, 58);
+  border-bottom-color: $light-grey;
 }
 
-.search-form{
+.search-form {
+  padding: 0 2rem;
 
-  input{
+  input {
     font-size: 1.3rem;
-    padding: .5rem;
+    padding: 0.5rem 0;
     width: 100%; //can't use widht:auto for placeholder, need to use JS
     background: transparent;
     border: none;
-    color: red;
     @media screen and (min-width: $md_breakpoint) {
       font-size: 1.7rem;
     }
-  }
 
-  input::placeholder{
-    color: rgb(186, 181, 171);
-  }
+    &::placeholder {
+      color: rgb(186, 181, 171);
+    }
 
-  input:focus{
-    outline: none;
+    &:focus {
+      outline: none;
+    }
   }
-
-  @media screen and (min-width: $md_breakpoint) {
-    padding: 0 2rem;
-  }
-
-  @media screen and (min-width: $lg_breakpoint) {
+  @media screen and (min-width:$lg_breakpoint) {
     padding: 0 13rem;
   }
+}
 
+.search-dropdown {
+  display: none;
+
+  h1 {
+    padding-left: 2rem;
+    font-size: 1.3rem;
+    @media screen and (min-width: $md_breakpoint) {
+      font-size: 2rem;
+    }
+    @media screen and (min-width: $lg_breakpoint) {
+      padding-left: 13rem;
+    }
+  }
+
+  ul {
+    font-size: 1.4rem;
+    color: rgb(218, 215, 210);
+
+    li {
+      padding: 0.3rem 0 0.3rem 2rem;
+      border: 1px solid transparent;
+      border-top-color: $light-grey;
+
+      &:hover {
+        background-color: $light-grey;
+      }
+      @media screen and (min-width: $lg_breakpoint) {
+        padding-left: 13rem;
+      }
+    }
+  }
 }

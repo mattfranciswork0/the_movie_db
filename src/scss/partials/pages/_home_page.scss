@@ -1,6 +1,6 @@
 .media {
   max-width: 100rem; //need max-width when in large screen so both columns have no extra space and are squeezed in
-  margin: 17rem auto 5rem;
+  margin: 21rem auto 5rem;
   display: grid;
   padding: 1rem 2rem; //note: padding affects grid-template-columns's minmax(..)! so if you change padding, you have to readjust the min in minmax(..)!
   grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
