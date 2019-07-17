@@ -47,7 +47,6 @@ async function getOnTV() {
     detailText[i].children[1].innerHTML = `Next episode: ${nextAirDate}`;
   }
 }
-// getOnTV();
 
 async function getOnTheaters() {
   const promises = [];
@@ -84,7 +83,6 @@ async function getOnTheaters() {
     castIndex -= 1;
   }
 }
-// getOnTheaters();
 
 async function getTrendingMovies() {
   const response = await axios.get('https://api.themoviedb.org/3/trending/movie/week?api_key=267f6c03dccb4096c3b41afeb9ac7d26');
@@ -100,17 +98,14 @@ async function getTrendingMovies() {
   }
 }
 
-// getTrendingMovies();
-
-async function loaderStatus() {
-  try {
-    await Promise.all([getOnTV(), getOnTheaters(), getTrendingMovies()]).then(() => {
-      document.getElementsByClassName('loader')[0].style.display = 'none';
-    });
-  } catch (err) {
-    console.log(err);
-  }
+function loaderStatus() {
+  Promise.all([getOnTV(), getOnTheaters(), getTrendingMovies()]).then(() => {
+    document.getElementsByClassName('loader')[0].style.display = 'none';
+  }).catch((error) => {
+    console.log(error);
+  });
 }
+
 
 loaderStatus();
 
@@ -130,3 +125,75 @@ function showResultsFromSearchBox() {
 }
 
 showResultsFromSearchBox();
+
+function getTrendingSearch() {
+  axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}`).then((response) => {
+    const total = Math.min(response.data.results.length, 10);
+    const list = document.querySelector('.search-dropdown > ul');
+    console.log('trending search');
+    for (let i = 0; i < total; i += 1) {
+      const node = document.createElement('li');
+      const text = document.createTextNode(`${response.data.results[i].original_title}`);
+      node.appendChild(text);
+      list.appendChild(node);
+    }
+  }).catch((error) => {
+    console.log(error)
+  });
+}
+
+getTrendingSearch();
+function getDataForSearchBox() {
+
+  // Retrieved from: https://schier.co/blog/2014/12/08/wait-for-user-to-stop-typing-using-javascript.html
+  //  Get the input box
+  const searchBox = document.querySelector('.search-form > input');
+
+  // Init a timeout variable to be used below
+  let timeout = null;
+
+  // Listen for keystroke events
+  searchBox.onkeyup = () => {
+    // Clear the timeout if it has already been set.
+    // This will prevent the previous task from executing
+    // if it has been less than <MILLISECONDS>
+    clearTimeout(timeout);
+
+    // remove all child inside <ul>
+    const list = document.querySelector('.search-dropdown > ul');
+    const trendingSearchesHeader = document.querySelector('.search-dropdown > h1');
+    trendingSearchesHeader.style.display = 'none';
+    while (list.hasChildNodes()) {
+      list.removeChild(list.firstChild);
+    }
+
+    // Make a new timeout set to go off in 800ms
+    timeout = setTimeout(() => {
+      if (searchBox.value !== '') {
+        axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US
+          &query=${searchBox.value}&page=1&include_adult=false`)
+          .then((response) => {
+            const total = Math.min(response.data.results.length, 10);
+
+            for (let i = 0; i < total; i += 1) {
+              const node = document.createElement('li');
+              let text;
+              if (response.data.results[i].media_type === 'movie') {
+                text = document.createTextNode(`${response.data.results[i].title} (Movie)`);
+              } else if (response.data.results[i].media_type === 'person') {
+                text = document.createTextNode(`${response.data.results[i].name} (Person)`);
+              } else {
+                text = document.createTextNode(`${response.data.results[i].name} (Show)`);
+              }
+              node.appendChild(text);
+              list.appendChild(node);
+            }
+          }).catch((error) => {
+            console.log(error)
+          });
+      }
+    }, 500);
+  };
+}
+
+getDataForSearchBox();
