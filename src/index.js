@@ -3,6 +3,9 @@ import '@babel/polyfill';
 import axios from 'axios';
 import API_KEY from './env';
 import webpackimg from './img/webpack-img.jpg'
+import SearchBoxView from './mvc/view/searchBoxView';
+import SearchBoxModel from './mvc/model/searchBoxModel';
+import SearchBoxController from './mvc/controller/searchBoxController';
 // const img = document.createElement("img")
 // img.src = webpackimg
 // document.body.appendChild(img)
@@ -110,90 +113,9 @@ function loaderStatus() {
 loaderStatus();
 
 
-function showResultsFromSearchBox() {
-  window.addEventListener('click', (e) => {
-    if (document.querySelector('.search-form > input').contains(e.target)) {
-      document.getElementsByClassName('search-dropdown')[0].style.display = 'block';
-    } else {
-      document.getElementsByClassName('search-dropdown')[0].style.display = 'none';
-    }
-  });
-
-  window.addEventListener('scroll', () => {
-    document.getElementsByClassName('search-dropdown')[0].style.display = 'none';
-  });
-}
-
-showResultsFromSearchBox();
-
-function getTrendingSearch() {
-  axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}`).then((response) => {
-    const total = Math.min(response.data.results.length, 10);
-    const list = document.querySelector('.search-dropdown > ul');
-    console.log('trending search');
-    for (let i = 0; i < total; i += 1) {
-      const node = document.createElement('li');
-      const text = document.createTextNode(`${response.data.results[i].original_title}`);
-      node.appendChild(text);
-      list.appendChild(node);
-    }
-  }).catch((error) => {
-    console.log(error)
-  });
-}
-
-getTrendingSearch();
-function getDataForSearchBox() {
-
-  // Retrieved from: https://schier.co/blog/2014/12/08/wait-for-user-to-stop-typing-using-javascript.html
-  //  Get the input box
-  const searchBox = document.querySelector('.search-form > input');
-
-  // Init a timeout variable to be used below
-  let timeout = null;
-
-  // Listen for keystroke events
-  searchBox.onkeyup = () => {
-    // Clear the timeout if it has already been set.
-    // This will prevent the previous task from executing
-    // if it has been less than <MILLISECONDS>
-    clearTimeout(timeout);
-
-    // remove all child inside <ul>
-    const list = document.querySelector('.search-dropdown > ul');
-    const trendingSearchesHeader = document.querySelector('.search-dropdown > h1');
-    trendingSearchesHeader.style.display = 'none';
-    while (list.hasChildNodes()) {
-      list.removeChild(list.firstChild);
-    }
-
-    // Make a new timeout set to go off in 800ms
-    timeout = setTimeout(() => {
-      if (searchBox.value !== '') {
-        axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US
-          &query=${searchBox.value}&page=1&include_adult=false`)
-          .then((response) => {
-            const total = Math.min(response.data.results.length, 10);
-
-            for (let i = 0; i < total; i += 1) {
-              const node = document.createElement('li');
-              let text;
-              if (response.data.results[i].media_type === 'movie') {
-                text = document.createTextNode(`${response.data.results[i].title} (Movie)`);
-              } else if (response.data.results[i].media_type === 'person') {
-                text = document.createTextNode(`${response.data.results[i].name} (Person)`);
-              } else {
-                text = document.createTextNode(`${response.data.results[i].name} (Show)`);
-              }
-              node.appendChild(text);
-              list.appendChild(node);
-            }
-          }).catch((error) => {
-            console.log(error)
-          });
-      }
-    }, 500);
-  };
-}
-
-getDataForSearchBox();
+const searchBoxView = new SearchBoxView();
+const searchBoxModel = new SearchBoxModel();
+const searchBoxController = new SearchBoxController(searchBoxView, searchBoxModel);
+searchBoxController.handleDropdownDisplay();
+searchBoxController.getTrendingDataAndShow();
+searchBoxController.handleKeywordSearch();
