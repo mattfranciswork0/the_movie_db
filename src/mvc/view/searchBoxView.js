@@ -55,8 +55,7 @@ class SearchBoxView {
           controller.getKeywordDataAndShow(searchBox.value);
         }
       }, 500);
-
-    }
+    };
   }
 
   generateKeywordViews(dataLength, response) {

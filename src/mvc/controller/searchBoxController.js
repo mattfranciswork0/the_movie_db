@@ -29,7 +29,7 @@ class SearchBoxController {
       .then((response) => {
         this.view.generateKeywordViews(this.model.getTotalDataToShow(), response);
       }).catch((error) => {
-        console.log(error)
+          console.log(error); //eslint-disable-line
       });
   }
 }
