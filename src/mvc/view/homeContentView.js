@@ -80,6 +80,44 @@ class homeContentView {
   closeLoader() {
     document.getElementsByClassName('loader')[0].style.display = 'none';
   }
+
+  // IMPORTANT: Below is related to lazy loading. Which will nto be used,
+  // but is created for future references.
+  // Built by following: https://www.youtube.com/watch?v=mC93zsEsSrg
+  preloadImage(img) {
+    const image = img;
+    // const src = img.getAttribute('lazy-load-src');
+    // You cannot use this because webpack dosen't load unused images into the server,
+    //  so you'll end up with 404 error (No image refference)
+    // if (!src) {
+    //   return;
+    //   // Just in case if lazy-load-src dosen't exist due to typo
+    // }
+    // image.src = src;
+    image.src = 'https://cdn.pixabay.com/photo/2016/09/01/10/23/image-1635747_960_720.jpg';
+  }
+
+  lazyLoadImages() {
+    const images = document.querySelectorAll('[lazy-load-src]');// data-src is a made up name
+    const imgOptions = {
+      rootMargin: '100px',
+    };
+
+    const imgObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // If  in viewport
+          this.preloadImage(entry.target);
+          observer.unobserve(entry.target);
+          // Once we preloaded the image. Stop oversving it
+        }
+      });
+    }, imgOptions);
+
+    images.forEach((image) => {
+      imgObserver.observe(image);
+    });
+  }
 }
 
 export default homeContentView;

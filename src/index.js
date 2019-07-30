@@ -18,7 +18,11 @@ import HomeContentController from './mvc/controller/homeContentController';
 const homeContentModel = new HomeContentModel();
 const homeContentView = new HomeContentView(homeContentModel);
 const homeContentController = new HomeContentController(homeContentView, homeContentModel);
-homeContentController.loadHomePageContent();
+homeContentController.loadHomePageContent(); // loader would dissappear after everything is loaded
+// IMPORTANT: lazy load is not used but it is functional
+// Built by following: https://www.youtube.com/watch?v=mC93zsEsSrg
+// Fade in transition could be applied by following: https://davidwalsh.name/lazyload-image-fade
+// homeContentView.lazyLoadImages();
 
 const searchBoxView = new SearchBoxView();
 const searchBoxModel = new SearchBoxModel();
