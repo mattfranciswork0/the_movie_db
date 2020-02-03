@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>The Movie Db</title>
+  <!-- <script src="../dist/bundle.js" defer></script> ; -->
+<link href="index.css" rel="stylesheet"></head>
+
+<body>
+  <header>
+
+    <div class="header-content">
+      <img class="logo"
+        src="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTEuMzQgMjIyLjgxIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzAxZDI3Nzt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPlByaW1hcnlMb2dvX0dyZWVuPC90aXRsZT48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yOTQ0LjU2LDIyMzYuMzRjMTQuNiwwLDI0LjQ4LTkuODgsMjQuNDgtMjQuNDhWMjA1Mi41OGMwLTE0LjYtOS44OC0yNC40OC0yNC40OC0yNC40OEgyNzQyLjE5Yy0xNC42LDAtMjQuNDgsOS44OC0yNC40OCwyNC40OHYxOTguMzNsMTIuNTYtMTQuNTZoMFYyMDUyLjU4YTExLjk0LDExLjk0LDAsMCwxLDExLjkyLTExLjkyaDIwMi4zN2ExMS45NCwxMS45NCwwLDAsMSwxMS45MiwxMS45MnYxNTkuMjhhMTEuOTQsMTEuOTQsMCwwLDEtMTEuOTIsMTEuOTJIMjc2MC44MmwtMTIuNTYsMTIuNTYtMC4wOC0uMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI3MTcuNzEgLTIwMjguMDkpIi8+PHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9IjYxLjM4IDc3LjI5IDY4LjMyIDc3LjI5IDY4LjMyIDQ5LjUyIDc2Ljk2IDQ5LjUyIDc2Ljk2IDQyLjYzIDUyLjc0IDQyLjYzIDUyLjc0IDQ5LjUyIDYxLjM4IDQ5LjUyIDYxLjM4IDc3LjI5Ii8+PHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9Ijk5LjUzIDc3LjI5IDEwNi40NyA3Ny4yOSAxMDYuNDcgNDIuNTggOTkuNTMgNDIuNTggOTkuNTMgNTYuNDYgODkuMTQgNTYuNDYgODkuMTQgNDIuNTggODIuMiA0Mi41OCA4Mi4yIDc3LjI5IDg5LjE0IDc3LjI5IDg5LjE0IDYzLjQgOTkuNTMgNjMuNCA5OS41MyA3Ny4yOSIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMSIgcG9pbnRzPSIxMzIuMjUgNzAuMzQgMTE5LjIzIDcwLjM0IDExOS4yMyA2My40IDEzMC4zNSA2My40IDEzMC4zNSA1Ni40NiAxMTkuMjMgNTYuNDYgMTE5LjIzIDQ5LjUyIDEzMS42NiA0OS41MiAxMzEuNjYgNDIuNTggMTEyLjI4IDQyLjU4IDExMi4yOCA3Ny4yOSAxMzIuMjUgNzcuMjkgMTMyLjI1IDcwLjM0Ii8+PHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9IjY4LjY2IDEwMS4zNSA1NC45NyA4Ni4xMSA1Mi43NCA4Ni4xMSA1Mi43NCAxMjEuMzUgNTkuNzggMTIxLjM1IDU5Ljc4IDEwMS45OCA2OC42NiAxMTEuMyA3Ny41NCAxMDEuOTggNzcuNSAxMjEuMzUgODQuNTMgMTIxLjM1IDg0LjUzIDg2LjExIDgyLjM1IDg2LjExIDY4LjY2IDEwMS4zNSIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTI4MjUuNzUsMjExNC4xNmMtMjMuODgsMC0yMy44OCwzNS43NywwLDM1Ljc3UzI4NDkuNjMsMjExNC4xNiwyODI1Ljc1LDIxMTQuMTZabTAsMjguNTljLTEzLjg4LDAtMTMuODgtMjEuNDUsMC0yMS40NVMyODM5LjYzLDIxNDIuNzUsMjgyNS43NSwyMTQyLjc1WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI3MTcuNzEgLTIwMjguMDkpIi8+PHJlY3QgY2xhc3M9ImNscy0xIiB4PSIxNjUuMzciIHk9Ijg2LjY1IiB3aWR0aD0iNi45NCIgaGVpZ2h0PSIzNC43Ii8+PHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9IjE4NS4wNyAxMTQuNDEgMTg1LjA3IDEwNy40NyAxOTYuMTkgMTA3LjQ3IDE5Ni4xOSAxMDAuNTMgMTg1LjA3IDEwMC41MyAxODUuMDcgOTMuNTkgMTk3LjUgOTMuNTkgMTk3LjUgODYuNjUgMTc4LjEzIDg2LjY1IDE3OC4xMyAxMjEuMzUgMTk4LjA5IDEyMS4zNSAxOTguMDkgMTE0LjQxIDE4NS4wNyAxMTQuNDEiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yNzgwLjc5LDIxNTguODFoLTEwLjM0djM0LjdoMTAuMzRDMjgwMy44OSwyMTkzLjUxLDI4MDMuODksMjE1OC44MSwyNzgwLjc5LDIxNTguODFabTAsMjcuNzZoLTMuNHYtMjAuODJoMy40QzI3OTQuMjgsMjE2NS43NSwyNzk0LjI4LDIxODYuNTcsMjc4MC43OSwyMTg2LjU3WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI3MTcuNzEgLTIwMjguMDkpIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjgyNCwyMTc2LjEzYzIuMTgtMS41LDMuMTEtNC4yMiwzLjItNi44NCwwLjE1LTYuMTItMy42OS0xMC41My05Ljg1LTEwLjUzaC0xMy43NHYzNC43NWgxMy43NGExMC4zMiwxMC4zMiwwLDAsMCwxMC4yNC0xMC40NEE4LjQzLDguNDMsMCwwLDAsMjgyNCwyMTc2LjEzWm0tMTMuNC0xMC40NGg2LjE3YTMuNTEsMy41MSwwLDAsMSwwLDdoLTYuMTd2LTdabTYuMTcsMjAuODdoLTYuMTd2LTYuOTRoNi4xN2EzLjQxLDMuNDEsMCwwLDEsMy40OSwzLjQ1QTMuNDUsMy40NSwwLDAsMSwyODE2Ljc3LDIxODYuNTdaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjcxNy43MSAtMjAyOC4wOSkiLz48cG9seWdvbiBjbGFzcz0iY2xzLTEiIHBvaW50cz0iMTQ0LjAxIDEwNS4zOCAxMzQuODcgODYuNjUgMTI2Ljg2IDg2LjY1IDE0My4yMyAxMjIuMDggMTQ0Ljc5IDEyMi4wOCAxNjEuMTUgODYuNjUgMTUzLjE0IDg2LjY1IDE0NC4wMSAxMDUuMzgiLz48L3N2Zz4="
+        alt="The Movie Database" width="81" height="72" />
+
+      <div class="main-header-wrap">
+        <ul class="primary">
+          <li>
+            Discover
+          </li>
+          <li>
+            Movies
+          </li>
+          <li>
+            TV Shows
+          </li>
+          <li>
+            People
+          </li>
+        </ul>
+      </div>
+
+      <div class="authentication-header-wrap">
+        <ul class="primary">
+          <li>
+            +
+          </li>
+          <li>
+            LOGIN
+          </li>
+          <li>
+            SIGNUP
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="search-bar">
+      <div class="search-form">
+        <input type="text" autocomplete="off" name="search" placeholder="Search for a movie, tv show, person..." />
+      </div>
+      <div class="search-dropdown">
+        <h1>Trending Searches</h1>
+        <ul>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="media">
+    <div class="column">
+      <h2>On TV</h2>
+      <div class="big-pic">
+        <img lazy-load-src="./img/pic-1.jpg" />
+        <span class="detail-container">
+          <img class="detail-pic" lazy-load-src="./img/detail-pic.jpg" />
+          <div class="detail-text">
+            <h2>Content title</h2>
+            <h4>New episode</h4>
+          </div>
+        </span>
+      </div>
+      <div class="small-pic-wrap">
+        <div class="small-pic">
+          <img lazy-load-src="./img/pic-2.jpg" />
+          <span class="detail-container">
+            <div class="detail-text">
+              <h2>ellipsis ellipsis ellipsis ellipsis ellipsis ellipsis ellipsis ellipsis ellipsis </h2>
+              <h4>ellipsis ellipsis ellipsis ellipsis ellipsis ellipsis </h4>
+            </div>
+          </span>
+        </div>
+        <div class="small-pic">
+          <img lazy-load-src="./img/pic-2.jpg" />
+          <span class="detail-container">
+            <div class="detail-text">
+              <h2>Content title</h2>
+              <h4>New episode</h4>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <h2>In Theaters </h2>
+      <div class="small-pic-wrap">
+        <div class="small-pic">
+          <img lazy-load-src="./img/pic-2.jpg" />
+          <span class="detail-container">
+            <div class="detail-text">
+              <h2>Content title</h2>
+              <h4>New episode</h4>
+            </div>
+          </span>
+        </div>
+        <div class="small-pic">
+          <img lazy-load-src="./img/pic-2.jpg" />
+          <span class="detail-container">
+            <div class="detail-text">
+              <h2>Content title</h2>
+              <h4>New episode</h4>
+            </div>
+          </span>
+        </div>
+      </div>
+      <div class="big-pic">
+        <img lazy-load-src="./img/pic-1.jpg" />
+        <span class="detail-container">
+          <img class="detail-pic" lazy-load-src="./img/detail-pic.jpg" />
+          <div class="detail-text">
+            <h2>Content title</h2>
+            <h4>New episode</h4>
+          </div>
+        </span>
+      </div>
+    </div>
+    <div class="trending-list-container">
+      <h2>Trending Movies</h2>
+      <ul class="trending-list">
+        <li>
+          <img lazy-load-src="./img/pic-3.jpg" class="trending-img" />
+          <div>
+            <h3>F1 Title</h3>
+            <p>
+              bla bla bla bla bla bla
+            </p>
+          </div>
+        </li>
+        <li>
+          <img lazy-load-src="./img/pic-3.jpg" class="trending-img" />
+          <div>
+            <h3>F2 Title</h3>
+            <p>
+              bla bla bla bla bla bla
+            </p>
+          </div>
+        </li>
+        <li>
+          <img lazy-load-src="./img/pic-3.jpg" class="trending-img" />
+          <div>
+            <h3>F3 Title</h3>
+            <p>
+              bla bla bla bla bla bla
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <nav>
+      <div class="join-and-logo">
+
+        <img src="https://www.themoviedb.org/assets/2/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg" alt="The Movie Database (TMDb)" width="130" height="116">
+        <p>
+          Join the Community
+        </p>
+      </div>
+      <div>
+        <h3>The Basics</h3>
+        <ul>
+          <li>
+            About TMDb
+          </li>
+          <li>
+            Contact Us
+          </li>
+          <li>
+            Support Forums
+          </li>
+          <li>
+            API
+          </li>
+          <li>
+            Blog
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Get Involved</h3>
+        <ul>
+          <li>
+            Contribution Bible
+          </li>
+          <li>
+            3rd Party Applications
+          </li>
+          <li>
+            Add New Movie
+          </li>
+          <li>
+            Add New TV Show
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Community</h3>
+        <ul>
+          <li>
+            Guidelins
+          </li>
+          <li>
+            Leaderboard
+          </li>
+          <li>
+            Forums
+          </li>
+          <li>
+            Twitter
+          </li>
+          <li>
+            Facebook
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <ul>
+          <li>
+            Terms of Use
+          </li>
+          <li>
+            Privacy Policy
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </footer>
+  <div class="loader"> </div>
+<script type="text/javascript" src="bundle.js"></script></body>
+
+</html>
